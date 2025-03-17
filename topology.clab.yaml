@@ -1,0 +1,32 @@
+name: srlceos01
+
+topology:
+  nodes:
+    srl_spine1:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
+    srl_spine2:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
+    ceos_leaf1:
+      kind: arista_ceos
+      image: ceos:4.29.10M
+    ceos_leaf2:
+      kind: arista_ceos
+      image: ceos:4.29.10M
+    ceos_leaf3:
+      kind: arista_ceos
+      image: ceos:4.29.10M
+    ceos_tor:
+      kind: arista_ceos
+      image: ceos:4.29.10M
+
+  links:
+    - endpoints: ["srl_spine1:e1-1", "ceos_leaf1:eth1"]
+    - endpoints: ["srl_spine1:e1-2", "ceos_leaf2:eth1"]
+    - endpoints: ["srl_spine1:e1-3", "ceos_leaf3:eth1"]
+    - endpoints: ["srl_spine2:e1-1", "ceos_leaf1:eth2"]
+    - endpoints: ["srl_spine2:e1-2", "ceos_leaf2:eth2"]
+    - endpoints: ["srl_spine2:e1-3", "ceos_leaf3:eth2"]
+    - endpoints: ["ceos_tor:eth1", "ceos_leaf1:eth3"]
+    - endpoints: ["ceos_tor:eth2", "ceos_leaf2:eth3"]
