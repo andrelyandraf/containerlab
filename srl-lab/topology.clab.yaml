@@ -5,6 +5,7 @@ topology:
     srl_spine1:
       kind: nokia_srlinux
       image: ghcr.io/nokia/srlinux
+      startup-config: config/sr-linux/config/srl_spine1-config.cfg
     srl_spine2:
       kind: nokia_srlinux
       image: ghcr.io/nokia/srlinux

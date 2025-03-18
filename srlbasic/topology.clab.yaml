@@ -1,0 +1,27 @@
+name: srlceos01
+
+topology:
+  nodes:
+    srl_spine:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
+      startup-config: config/srl_spine.cfg
+    srl_leaf1:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
+      startup-config: config/srl_leaf1.cfg
+    srl_leaf2:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux
+      startup-config: config/srl_leaf2.cfg
+    n1:
+      kind: linux
+      image: alpine:latest
+    n2:
+      kind: linux
+      image: alpine:latest
+  links:
+      - endpoints: ["srl_spine:e1-1", "srl_leaf1:e1-49"]
+      - endpoints: ["srl_spine:e1-2", "srl_leaf2:e1-49"]
+      - endpoints: ["srl_leaf1:e1-1", "n1:eth1"]
+      - endpoints: ["srl_leaf2:e1-1", "n2:eth1"]
