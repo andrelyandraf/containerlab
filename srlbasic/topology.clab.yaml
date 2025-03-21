@@ -20,8 +20,16 @@ topology:
     n2:
       kind: linux
       image: alpine:latest
+    n10:
+      kind: linux
+      image: alpine:latest
+    n20:
+      kind: linux
+      image: alpine:latest
   links:
       - endpoints: ["srl_spine:e1-1", "srl_leaf1:e1-49"]
       - endpoints: ["srl_spine:e1-2", "srl_leaf2:e1-49"]
       - endpoints: ["srl_leaf1:e1-1", "n1:eth1"]
       - endpoints: ["srl_leaf2:e1-1", "n2:eth1"]
+      - endpoints: ["srl_leaf1:e1-2", "n10:eth1"]
+      - endpoints: ["srl_leaf2:e1-2", "n20:eth1"]
